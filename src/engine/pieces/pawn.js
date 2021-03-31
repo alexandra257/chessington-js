@@ -9,14 +9,28 @@ export default class Pawn extends Piece {
 
     getAvailableMoves(board) {
         let currentSquare = board.findPiece(this);
-        let square;
+        let nextMove;
+        let arrayOfMoves = [];
 
         if (this.player == Player.BLACK) {
-            square = Square.at(currentSquare.row - 1, currentSquare.col);
-        } else {
-            square = Square.at(currentSquare.row + 1, currentSquare.col);
+            nextMove = Square.at(currentSquare.row - 1, currentSquare.col);
+            arrayOfMoves.push(nextMove);
+
+            if (currentSquare.row === 6) {
+                nextMove = Square.at(currentSquare.row - 2, currentSquare.col);
+                arrayOfMoves.push(nextMove);
+            }
         }
-        return [ square ];
-        // return [ Square.at(6, 7), Square.at(1, 0) ];
+
+        else {
+            nextMove = Square.at(currentSquare.row + 1, currentSquare.col);
+            arrayOfMoves.push(nextMove);
+
+            if (currentSquare.row === 1) {
+                nextMove = Square.at(currentSquare.row + 2, currentSquare.col);
+                arrayOfMoves.push(nextMove);
+            }
+        }
+        return arrayOfMoves;
     }
 }
