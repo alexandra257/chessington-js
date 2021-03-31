@@ -7,10 +7,11 @@ import Square from '../../../src/engine/square';
 describe('Pawn', () => {
 
     let board;
+    // before each describe, create a new instance the board
     beforeEach(() => board = new Board());
 
     describe('white pawns', () => {
-        
+
         it('can move one square up', () => {
             const pawn = new Pawn(Player.WHITE);
             board.setPiece(Square.at(0, 0), pawn);
@@ -23,13 +24,14 @@ describe('Pawn', () => {
     });
 
     describe('black pawns', () => {
-        
+
         it('can move one square down', () => {
             const pawn = new Pawn(Player.BLACK);
             board.setPiece(Square.at(7, 7), pawn);
 
             const moves = pawn.getAvailableMoves(board);
 
+            // deep = look inside each element in the array
             moves.should.deep.include(Square.at(6, 7));
         });
 
